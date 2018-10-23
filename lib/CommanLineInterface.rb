@@ -23,9 +23,10 @@ class CommandLineInterface
       find_by_artist(location, artist)
     elsif input == "3"
       puts "What is the name of the venue?"
-      venue_name = gets.strip
+      venue = gets.strip
       puts "What city is it in?"
       location = gets.strip
+      find_by_venue(location, venue)
     elsif input == "4"
       puts "Where do you live? e.g. <Washington, DC>"
         location = gets.strip
@@ -38,6 +39,7 @@ class CommandLineInterface
     end
   end
 
+  # greet option 2 methods
   def find_by_artist(location, artist)
     events = Event.all.select do |ev|
       (artist == ev.artist.name) && (location == ev.venue.location)
@@ -47,6 +49,18 @@ class CommandLineInterface
       puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date}"
     end
   end
+
+  # greet option 3 methods
+  def find_by_venue(location, venue)
+    events = Event.all.select do |ev|
+      (venue == ev.venue.name) && (location == ev.venue.location)
+    end
+
+    events.each do |ev|
+      puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date}"
+    end
+  end
+
 
 
 end
