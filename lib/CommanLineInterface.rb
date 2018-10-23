@@ -6,10 +6,11 @@ class CommandLineInterface
     puts "Hello! Welcome to Eventster, your local area concert finder."
     puts "What would you like to do?"
       puts "1. Learn more about Eventster."
-      puts "2. Search for shows near you by artist."
-      puts "3. Search for shows near you by venue."
-      puts "4. Search for shows by genre."
+      puts "2. Search for shows by artist and city."
+      puts "3. Search for shows by venue and city."
+      puts "4. Search for shows by genre and city."
       puts "5. Show all shows near you within a certain time period."
+      puts "6. Exit program."
       input = gets.strip #strip gets rid of whitespace before and after user input
       input
   end
@@ -22,9 +23,9 @@ class CommandLineInterface
 
     # 2. Search for shows near you by artist.
     elsif input == "2"
-      puts "Where do you live? e.g. <Washington, DC>"
+      puts "In what city would you like to search? e.g. <Washington, DC>"
       location = gets.strip
-      puts "Which artist would you like to search by"
+      puts "Which artist would you like to search by?"
       artist = gets.strip
       events = find_by_artist(location, artist)
       filter_price(events)
@@ -40,12 +41,11 @@ class CommandLineInterface
       filter_price(events)
       greet_input(greet) # added cli streamlined method to end of every option
 
-
     # 4. Search for shows by genre.
     elsif input == "4"
-      puts "Which genre?"
+      puts "What is the genre?"
       genre = gets.strip
-      puts "Where are you looking for shows? e.g. <Washington, DC>"
+      puts "In what city would you like to search? e.g. <Washington, DC>"
       location = gets.strip
       events = find_by_genre(location, genre)
       filter_price(events)
@@ -61,6 +61,9 @@ class CommandLineInterface
         date = gets.strip
       puts "3. Define your own custom time period in days or months"
         date = gets.strip
+
+    elsif input == "6"
+      exit
     end
   end
 
