@@ -18,6 +18,7 @@ class CommandLineInterface
     if input == "1" # gets is always a string
       puts "readme"
 
+    # 2. Search for shows near you by artist.
     elsif input == "2"
       puts "Where do you live? e.g. <Washington, DC>"
       location = gets.strip
@@ -26,6 +27,7 @@ class CommandLineInterface
       events = find_by_artist(location, artist)
       filter_price(events)
 
+    # 3. Search for shows near you by venue.
     elsif input == "3"
       puts "What is the name of the venue?"
       venue = gets.strip
@@ -34,6 +36,7 @@ class CommandLineInterface
       events = find_by_venue(location, venue)
       filter_price(events)
 
+    # 4. Search for shows by genre.
     elsif input == "4"
       puts "Which genre?"
       genre = gets.strip
@@ -42,6 +45,7 @@ class CommandLineInterface
       events = find_by_genre(location, genre)
       filter_price(events)
 
+    # 5. Show all shows near you within a certain time period.
     elsif input == "5"
       puts "Where do you live? e.g. <Washington, DC>"
         location = gets.strip
@@ -54,15 +58,19 @@ class CommandLineInterface
     end
   end
 
+  def show_events(events)
+    events.each do |ev|
+      puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date} -- $#{ev.price}"
+    end
+  end
+
   # greet option 2 methods
   def find_by_artist(location, artist)
     events = Event.all.select do |ev|
       (artist == ev.artist.name) && (location == ev.venue.location)
     end
 
-    events.each do |ev|
-      puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date} -- $#{ev.price}"
-    end
+    show_events(events)
   end
 
   # greet option 3 methods
@@ -71,9 +79,7 @@ class CommandLineInterface
       (venue == ev.venue.name) && (location == ev.venue.location)
     end
 
-    events.each do |ev|
-      puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date} -- $#{ev.price}"
-    end
+    show_events(events)
   end
 
   # greet option 4 methods
