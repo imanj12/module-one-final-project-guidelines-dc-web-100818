@@ -58,41 +58,38 @@ class CommandLineInterface
     end
   end
 
+  # show events helper method
   def show_events(events)
     events.each do |ev|
       puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date} -- $#{ev.price}"
     end
   end
 
-  # greet option 2 methods
+  # greet option 2 method
   def find_by_artist(location, artist)
     events = Event.all.select do |ev|
       (artist == ev.artist.name) && (location == ev.venue.location)
     end
-
     show_events(events)
   end
 
-  # greet option 3 methods
+  # greet option 3 method
   def find_by_venue(location, venue)
     events = Event.all.select do |ev|
       (venue == ev.venue.name) && (location == ev.venue.location)
     end
-
     show_events(events)
   end
 
-  # greet option 4 methods
+  # greet option 4 method
   def find_by_genre(location, genre)
     events = Event.all.select do |ev|
       (genre == ev.artist.genre) && (location == ev.venue.location)
     end
-
-    events.each do |ev|
-      puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date} -- $#{ev.price}"
-    end
+    show_events(events)
   end
 
+  # filter price methods
   def filter_price(events)
   puts "Would you like to filter by price? (y/n)"
   yes_no = gets.strip
@@ -103,14 +100,13 @@ class CommandLineInterface
     end
   end
 
+  # filter price helper method
   def filter_by_price(events, price)
     events_price = events.select do |ev|
       ev.price <= price.to_f
     end
 
-    events_price.each do |ev|
-      puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date} -- $#{ev.price}"
-    end
+    show_events(events_price)
   end
 
 
