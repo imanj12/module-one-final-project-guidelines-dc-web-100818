@@ -70,7 +70,7 @@ class CommandLineInterface
     events = Event.all.select do |ev|
       (artist == ev.artist.name) && (location == ev.venue.location)
     end
-    show_events(events)
+    # show_events(events)
   end
 
   # greet option 3 method
@@ -78,7 +78,7 @@ class CommandLineInterface
     events = Event.all.select do |ev|
       (venue == ev.venue.name) && (location == ev.venue.location)
     end
-    show_events(events)
+    # show_events(events)
   end
 
   # greet option 4 method
@@ -86,7 +86,7 @@ class CommandLineInterface
     events = Event.all.select do |ev|
       (genre == ev.artist.genre) && (location == ev.venue.location)
     end
-    show_events(events)
+    # show_events(events)
   end
 
   # filter price methods
@@ -97,6 +97,8 @@ class CommandLineInterface
       puts "Please input a maximum price"
       price = gets.strip
       filter_by_price(events, price)
+    else
+      show_events(events)
     end
   end
 
@@ -105,7 +107,6 @@ class CommandLineInterface
     events_price = events.select do |ev|
       ev.price <= price.to_f
     end
-
     show_events(events_price)
   end
 
