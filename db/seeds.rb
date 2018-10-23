@@ -2,6 +2,9 @@ require_relative "../lib/artist.rb"
 require_relative "../lib/venue.rb"
 require_relative "../lib/event.rb"
 
+Artist.destroy_all
+Venue.destroy_all
+Event.destroy_all
 
 drake = Artist.create(name: "Drake")
 adele = Artist.create(name: "Adele")

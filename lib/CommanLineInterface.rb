@@ -1,3 +1,4 @@
+require 'pry'
 class CommandLineInterface
 
   def greet
@@ -38,10 +39,14 @@ class CommandLineInterface
   end
 
   def find_by_artist(location, artist)
-    Event.all.select do |ev|
-      if artist == ev.artist.name && location == ev.venue.location
-        puts ev
-      end
+    events = Event.all.select do |ev|
+      (artist == ev.artist.name) && (location == ev.venue.location)
+    end
+
+    events.each do |ev|
+      puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date}"
     end
   end
+
+
 end
