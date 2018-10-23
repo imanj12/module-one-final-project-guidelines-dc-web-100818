@@ -28,8 +28,7 @@ class CommandLineInterface
       artist = gets.strip
       events = find_by_artist(location, artist)
       filter_price(events)
-      input = greet
-      greet_input(input)
+      greet_input(greet) # added cli streamlined method to end of every option
 
     # 3. Search for shows near you by venue.
     elsif input == "3"
@@ -39,8 +38,8 @@ class CommandLineInterface
       location = gets.strip
       events = find_by_venue(location, venue)
       filter_price(events)
-      input = greet
-      greet_input(input)
+      greet_input(greet) # added cli streamlined method to end of every option
+
 
     # 4. Search for shows by genre.
     elsif input == "4"
@@ -50,8 +49,7 @@ class CommandLineInterface
       location = gets.strip
       events = find_by_genre(location, genre)
       filter_price(events)
-      input = greet
-      greet_input(input)
+      greet_input(greet) # added cli streamlined method to end of every option
 
     # 5. Show all shows near you within a certain time period.
     elsif input == "5"
