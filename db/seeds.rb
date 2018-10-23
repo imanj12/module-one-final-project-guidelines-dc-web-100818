@@ -6,10 +6,10 @@ Artist.destroy_all
 Venue.destroy_all
 Event.destroy_all
 
-drake = Artist.create(name: "Drake")
-adele = Artist.create(name: "Adele")
-wu_tang = Artist.create(name: "Wu-Tang Clan")
-the_knife = Artist.create(name: "The Knife")
+drake = Artist.create(name: "Drake", genre: "hip/hop")
+adele = Artist.create(name: "Adele", genre: "r&b")
+wu_tang = Artist.create(name: "Wu-Tang Clan", genre: "hip/hop")
+the_knife = Artist.create(name: "The Knife", genre: "electro-pop")
 
 nine_thirty = Venue.create(name: "9:30 Club", location: "Washington, DC")
 dc_nine = Venue.create(name: "DC9", location: "Washington, DC")

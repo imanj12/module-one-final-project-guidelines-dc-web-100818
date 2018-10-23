@@ -7,7 +7,8 @@ class CommandLineInterface
       puts "1. Learn more about Eventster."
       puts "2. Search for shows near you by artist."
       puts "3. Search for shows near you by venue."
-      puts "4. Show all shows near you within a certain time period."
+      puts "4. Search for shows by genre."
+      puts "5. Show all shows near you within a certain time period."
       input = gets.strip #strip gets rid of whitespace before and after user input
       input
   end
@@ -24,10 +25,14 @@ class CommandLineInterface
     elsif input == "3"
       puts "What is the name of the venue?"
       venue = gets.strip
-      puts "What city is it in?"
+      puts "What city is it in? e.g. <Washington, DC>"
       location = gets.strip
       find_by_venue(location, venue)
     elsif input == "4"
+      puts "Which genre?"
+      genre = gets.strip
+      puts "Where are you looking for shows? e.g. <Washington, DC>"
+    elsif input == "5"
       puts "Where do you live? e.g. <Washington, DC>"
         location = gets.strip
       puts "1. See all shows in the current month"
@@ -60,6 +65,8 @@ class CommandLineInterface
       puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date}"
     end
   end
+
+  # greet option 3 methods
 
 
 
