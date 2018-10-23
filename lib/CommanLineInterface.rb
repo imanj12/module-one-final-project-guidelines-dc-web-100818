@@ -32,6 +32,8 @@ class CommandLineInterface
       puts "Which genre?"
       genre = gets.strip
       puts "Where are you looking for shows? e.g. <Washington, DC>"
+      location = gets.strip
+      find_by_genre(location, genre)
     elsif input == "5"
       puts "Where do you live? e.g. <Washington, DC>"
         location = gets.strip
@@ -66,7 +68,17 @@ class CommandLineInterface
     end
   end
 
-  # greet option 3 methods
+  # greet option 4 methods
+  def find_by_genre(location, genre)
+    events = Event.all.select do |ev|
+      (genre == ev.artist.genre) && (location == ev.venue.location)
+    end
+
+    events.each do |ev|
+      puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date}"
+    end
+  end
+
 
 
 
