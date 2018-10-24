@@ -21,11 +21,21 @@ class ApiCommunicator
         	new_artist = Artist.create(name: event["name"])
         	city = event["_embedded"]["venues"][0]["city"]["name"]
         	state = event["_embedded"]["venues"][0]["state"]["stateCode"]
+
         	location = city + ', ' + state
         	new_venue = Venue.create(name: event["_embedded"]["venues"][0]["name"], location: location)
+        	event_time = event["dates"]["start"]["localTime"]
+        	event_date = event["dates"]["start"]["localDate"]
+        	event_date_time = event_time + ', ' + event_date
+        	new_event = Event.create(date: event_date_time, artist: new_artist, venue: new_venue, price: 75)
         	puts new_artist.name
         	puts new_venue.name
         	puts new_venue.location
+        	puts new_event.date
+        	puts new_event.artist.name
+        	puts new_event.venue.name
+        	
+
         end
 
         # new_artist = Artist.create(name: response_hash["_embedded"]["events"][0]["name"])
