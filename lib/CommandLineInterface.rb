@@ -73,14 +73,15 @@ class CommandLineInterface
   # greet option 2 method
   def find_by_artist(location, artist)
     ApiCommunicator.find_by_artist(location, artist)
+
     Event.all.select do |ev|
+      # binding.pry
       (artist.downcase == ev.artist.name.downcase) && (location.downcase == ev.venue.location.downcase)
     end
   end
 
   # greet option 3 method
   def find_by_venue(location, venue)
-
     events = Event.all.select do |ev|
       (venue == ev.venue.name) && (location == ev.venue.location)
     end
@@ -98,6 +99,27 @@ class CommandLineInterface
     events.each do |ev|
       puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date} -- $#{ev.price}"
     end
+  end
+
+  # filter price methods
+  def filter_price(events)
+  puts "Would you like to filter by price? (y/n)"
+  yes_no = gets.strip
+    if yes_no == "y"
+      puts "Please input a maximum price"
+      price = gets.strip
+      filter_by_price(events, price)
+    else
+      show_events(events)
+    end
+  end
+
+  # filter price helper method
+  def filter_by_price(events, price)
+    events_price = events.select do |ev|
+      ev.price <= price.to_f
+    end
+    show_events(events_price)
   end
 
 end

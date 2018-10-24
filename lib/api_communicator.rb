@@ -9,10 +9,10 @@ class ApiCommunicator
     state = location.split(", ")[1]
 
     # substitute spaces for %20 character for API
-    artist.gsub!(" ", "%20")
+    query_artist_name = artist.gsub(" ", "%20")
 
     # query API
-  	response_string = RestClient.get("https://app.ticketmaster.com/discovery/v2/events?apikey=Qp2WTAvTGAHltXmm8Vc8ARAU5qvAx2nw&keyword=#{artist}&city=#{city}&countryCode=US&stateCode=#{state}")
+  	response_string = RestClient.get("https://app.ticketmaster.com/discovery/v2/events?apikey=Qp2WTAvTGAHltXmm8Vc8ARAU5qvAx2nw&keyword=#{query_artist_name}&city=#{city}&countryCode=US&stateCode=#{state}")
     response_hash = JSON.parse(response_string)
 
     # loop through response hash and make new artist, event, venue objects
@@ -32,4 +32,6 @@ class ApiCommunicator
     	Event.find_or_create_by(date: event_date_time, artist: new_artist, venue: new_venue, price: 75)
     end
   end
+
+
 end
