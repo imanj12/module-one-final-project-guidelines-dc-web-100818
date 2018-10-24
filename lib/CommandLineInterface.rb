@@ -27,8 +27,9 @@ class CommandLineInterface
       location = gets.strip
       puts "Which artist would you like to search by?"
       artist = gets.strip
-      events = find_by_artist(location, artist)
-      filter_price(events)
+      find_by_artist(location, artist)
+      # filter_price(events)
+      # show_events(events)
       greet_input(greet) # added cli streamlined method to end of every option
 
     # 3. Search for shows near you by venue.
@@ -76,11 +77,11 @@ class CommandLineInterface
 
   # greet option 2 method
   def find_by_artist(location, artist)
-      ApiCommunicator.find_by_artist(location, artist)
-     
-      events = Event.all.select do |ev|
-      (artist == ev.artist.name) && (location == ev.venue.location)
+    ApiCommunicator.find_by_artist(location, artist)
+    events = Event.all.select do |ev|
+      (artist.downcase == ev.artist.name.downcase) && (location.downcase == ev.venue.location.downcase)
     end
+    show_events(events)
   end
 
   # greet option 3 method
