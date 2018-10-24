@@ -13,12 +13,28 @@ class ApiCommunicator
     	
      	artist.gsub!(" ", "%20")
 
-    	puts "im here too"
+    	# puts "im here too"
     	response_string = RestClient.get("https://app.ticketmaster.com/discovery/v2/events?apikey=Qp2WTAvTGAHltXmm8Vc8ARAU5qvAx2nw&keyword=#{artist}&city=#{city}&countryCode=US&stateCode=#{state}")
         response_hash = JSON.parse(response_string)
 
-        new_artist = Artist.create(name: response_hash["_embedded"]["events"][0]["name"])
-        puts new_artist.name
+        response_hash["_embedded"]["events"].each do |event|
+        	new_artist = Artist.create(name: event["name"])
+        	city = event["_embedded"]["venues"][0]["city"]["name"]
+        	state = event["_embedded"]["venues"][0]["state"]["stateCode"]
+        	location = city + ', ' + state
+        	new_venue = Venue.create(name: event["_embedded"]["venues"][0]["name"], location: location)
+        	puts new_artist.name
+        	puts new_venue.name
+        	puts new_venue.location
+        end
+
+        # new_artist = Artist.create(name: response_hash["_embedded"]["events"][0]["name"])
+        # puts new_artist.name
+        # venue_name = response_hash["_embedded"]["events"][0]["_embedded"]["venues"][0]["name"]
+        # new_venue = Venue.create(name: venue_name, location: "nowhere")
+
+        
+
 
          
 
