@@ -76,13 +76,20 @@ class CommandLineInterface
 
   # greet option 2 method
   def find_by_artist(location, artist)
-    events = Event.all.select do |ev|
+     location.gsub!(" ", "%20")
+     artist.gsub!(" ", "%20")
+
+     response_string = RestClient.get('https://app.ticketmaster.com/discovery/v2/events?apikey=Qp2WTAvTGAHltXmm8Vc8ARAU5qvAx2nw&keyword=The%20Knife&city=Falls%20Church&countryCode=US&stateCode=DC')
+     response_hash = JSON.parse(response_string)
+
+      events = Event.all.select do |ev|
       (artist == ev.artist.name) && (location == ev.venue.location)
     end
   end
 
   # greet option 3 method
   def find_by_venue(location, venue)
+
     events = Event.all.select do |ev|
       (venue == ev.venue.name) && (location == ev.venue.location)
     end
