@@ -18,18 +18,18 @@ class ApiCommunicator
     # loop through response hash and make new artist, event, venue objects
     response_hash["_embedded"]["events"].each do |event|
       # create artist object
-      new_artist = Artist.create(name: event["name"])
+      new_artist = Artist.find_or_create_by(name: event["name"])
       # collect city and state from hash and join them
       city = event["_embedded"]["venues"][0]["city"]["name"]
     	state = event["_embedded"]["venues"][0]["state"]["stateCode"]
     	location = city + ', ' + state
       # create new venue
-      new_venue = Venue.create(name: event["_embedded"]["venues"][0]["name"], location: location)
+      new_venue = Venue.find_or_create_by(name: event["_embedded"]["venues"][0]["name"], location: location)
       # create event
       event_time = event["dates"]["start"]["localTime"]
     	event_date = event["dates"]["start"]["localDate"]
     	event_date_time = event_time + ', ' + event_date
-    	Event.create(date: event_date_time, artist: new_artist, venue: new_venue, price: 75)
+    	Event.find_or_create_by(date: event_date_time, artist: new_artist, venue: new_venue, price: 75)
     end
   end
 end
