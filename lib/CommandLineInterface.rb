@@ -107,6 +107,10 @@ class CommandLineInterface
     puts
     events.each do |ev|
       puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date} -- $#{ev.price}".colorize(:red)
+
+      table = TTY::Table.new ['Artist','Venue', "Doors Open", "Price"], [[ev.artist.name, ev.venue.name, ev.date, ev.price]]
+      # binding.pry
+      table.render(:ascii)
     end
     puts
   end
