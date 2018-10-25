@@ -12,6 +12,7 @@ This is a CLI-based application and as such, is somewhat limited in functionalit
 
 ## Object Model
 
+![Eventster Objects Model](https://github.com/imanj12/module-one-final-project-guidelines-dc-web-100818/blob/iman/img/object_models.png)
 
 
 ## Installation
@@ -29,4 +30,6 @@ Your environment is now set up.
 
 ## Usage
 
-To start the app, run `ruby /bin/run.rb` from the installation directory. This will drop you into splash page for the app and the core of the primary application loop.
+To start the app, run `ruby /bin/run.rb` from the installation directory. This will drop you into the splash page for the app and the core of the primary application loop. From there, the functionality is straightforward to the user.
+
+Note: The database will start empty. Only Option 2 from the start page will search for shows and add them to the database. Options 3 and 4 will only query the existing database. Having options 3 and 4 rely on API calls is a planned feature.
