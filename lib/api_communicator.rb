@@ -31,7 +31,7 @@ class ApiCommunicator
       	city_state = city + ', ' + state
         # create new venue
         new_venue = Venue.find_or_create_by(name: event["_embedded"]["venues"][0]["name"], location: city_state)
-        # get price
+        # get price if exists, or set $0 if doesn't
         if response_hash["_embedded"]["events"][0]["priceRanges"] == nil #[0]["min"]
           min_price = 0
         else

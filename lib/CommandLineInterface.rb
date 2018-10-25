@@ -29,7 +29,8 @@ class CommandLineInterface
       artist = gets.strip
       # query api, save to database, return array of all relevant events
       events = find_by_artist(location, artist)
-      show_events(events)
+      filter_price(events)
+      # show_events(events)
       greet_input(greet) # added cli streamlined method to end of every option
 
     # 3. Search for shows near you by venue.
@@ -90,6 +91,11 @@ class CommandLineInterface
   # greet option 4 method
   def find_by_genre(location, genre)
     events = Event.all.select do |ev|
+      # binding.pry
+      if ev.artist.genre == nil
+        ev.artist.genre = "no genre found"
+        ev.artist.save
+      end
       (genre.downcase == ev.artist.genre.downcase) && (location.downcase == ev.venue.location.downcase)
     end
   end
@@ -97,7 +103,7 @@ class CommandLineInterface
   # show events helper method
   def show_events(events)
     puts
-    puts "Note: If prices for a given event are shown as $0, then prices could not be found! Check the event website by clicking on the link.".colorize(:blue)
+    puts "Note: If prices for a given event are shown as $0, then prices could not be found! It doesn't mean the event is free!".colorize(:blue)
     puts
     events.each do |ev|
       puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date} -- $#{ev.price}".colorize(:red)
