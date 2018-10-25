@@ -97,6 +97,8 @@ class CommandLineInterface
   # show events helper method
   def show_events(events)
     puts
+    puts "Note: If prices for a given event are shown as $0, then prices could not be found! Check the event website by clicking on the link.".colorize(:blue)
+    puts
     events.each do |ev|
       puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date} -- $#{ev.price}".colorize(:red)
     end
