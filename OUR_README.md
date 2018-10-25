@@ -10,17 +10,23 @@ This is a CLI-based application and as such, is somewhat limited in functionalit
 2. Search for shows by venue and city
 3. Search for shows by genre and city
 
+## Data Model
+
+
 ## Installation
 This is not a standalone executable. We recommend forking this entire directory and cloning it down. The run.rb file in /bin depends on quite a few other files.
 
-This is write-up assumes you have a working Ruby environment on your computer. If not, set one up first.
+This is write-up assumes you have a working Ruby environment on your computer with SQLite3 installed. If not, set this up first.
+
 ### 1. Create Database
 Cd into the root installation directory and run the following Rake task:
-```rake db:create
-```
+`rake db:create`
+This will create the database that will store the results of your TciketMasterAPI query--and all artist, event, and venue objects.
 ### 2. Migrate tables and changes to DB
-``` rake db:migrate
-```
-### 3. 
+`rake db:migrate`
 
-This will create the database that will store the results of your API query.
+Your environment is now set up.
+
+## Usage
+
+To start the app, run `ruby /bin/run.rb` from the installation directory.
