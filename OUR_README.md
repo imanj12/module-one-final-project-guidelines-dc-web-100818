@@ -10,8 +10,9 @@ This is a CLI-based application and as such, is somewhat limited in functionalit
 2. Search for shows by venue and city
 3. Search for shows by genre and city
 
-## Data Model
-There
+## Object Model
+
+
 
 ## Installation
 This is not a standalone executable. We recommend forking this entire directory and cloning it down. The run.rb file in /bin depends on quite a few other files.
@@ -21,12 +22,11 @@ This is write-up assumes you have a working Ruby environment on your computer wi
 ### 1. Create Database
 Cd into the root installation directory and run the following Rake task:
 `rake db:create`
-This will create the database that will store the results of your TicketMasterAPI query--and all artist, event, and venue objects.
+This will create the database that will store the results of your TicketMasterAPI query--and all artist, event, and venue objects created automatically afterwards.
 ### 2. Migrate tables and changes to DB
 `rake db:migrate`
-
 Your environment is now set up.
 
 ## Usage
 
-To start the app, run `ruby /bin/run.rb` from the installation directory.
+To start the app, run `ruby /bin/run.rb` from the installation directory. This will drop you into splash page for the app and the core of the primary application loop.
