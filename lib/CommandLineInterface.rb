@@ -3,14 +3,14 @@ class CommandLineInterface
 
   def greet
     puts TTY::Font.new(:doom).write("Eventster")
-    puts "Hello! Welcome to Eventster, your local area concert finder."
+    puts "Hello! Welcome to Eventster, your cli-based concert search engine."
     puts "What would you like to do?"
       puts "1. Learn more about Eventster."
       puts "2. Search for shows by artist and city."
       puts "3. Search for shows by venue and city."
       puts "4. Search for shows by genre and city."
-      puts "5. Show all shows near you within a certain time period."
-      puts "6. Exit program."
+      # puts "5. Show all shows near you within a certain time period."
+      puts "5. Exit program."
       input = gets.strip #strip gets rid of whitespace before and after user input
       input
   end
@@ -53,17 +53,17 @@ class CommandLineInterface
       greet_input(greet) # added cli streamlined method to end of every option
 
     # 5. Show all shows near you within a certain time period.
-    elsif input == "5"
-      puts "Where do you live? e.g. <Washington, DC>"
-        location = gets.strip
-      puts "1. See all shows in the current month"
-        date = gets.strip
-      puts "2. See all shows in the next month"
-        date = gets.strip
-      puts "3. Define your own custom time period in days or months"
-        date = gets.strip
+    # elsif input == "5"
+    #   puts "Where do you live? e.g. <Washington, DC>"
+    #     location = gets.strip
+    #   puts "1. See all shows in the current month"
+    #     date = gets.strip
+    #   puts "2. See all shows in the next month"
+    #     date = gets.strip
+    #   puts "3. Define your own custom time period in days or months"
+    #     date = gets.strip
 
-    elsif input == "6"
+  elsif input == "5"
       exit
     else
       greet_input(greet)
@@ -75,7 +75,7 @@ class CommandLineInterface
     ApiCommunicator.find_by_artist(location, artist)
 
     Event.all.select do |ev|
-      # binding.pry
+      # binding1.pry
       (artist.downcase == ev.artist.name.downcase) && (location.downcase == ev.venue.location.downcase)
     end
   end
@@ -83,22 +83,24 @@ class CommandLineInterface
   # greet option 3 method
   def find_by_venue(location, venue)
     events = Event.all.select do |ev|
-      (venue == ev.venue.name) && (location == ev.venue.location)
+      (venue.downcase == ev.venue.name.downcase) && (location.downcase == ev.venue.location.downcase)
     end
   end
 
   # greet option 4 method
   def find_by_genre(location, genre)
     events = Event.all.select do |ev|
-      (genre == ev.artist.genre) && (location == ev.venue.location)
+      (genre.downcase == ev.artist.genre.downcase) && (location.downcase == ev.venue.location.downcase)
     end
   end
 
   # show events helper method
   def show_events(events)
+    puts
     events.each do |ev|
-      puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date} -- $#{ev.price}"
+      puts "#{ev.artist.name} at #{ev.venue.name} doors open #{ev.date} -- $#{ev.price}".colorize(:red)
     end
+    puts
   end
 
   # filter price methods

@@ -22,9 +22,9 @@ class ApiCommunicator
       # collect city and state from hash and join them
       city = event["_embedded"]["venues"][0]["city"]["name"]
     	state = event["_embedded"]["venues"][0]["state"]["stateCode"]
-    	location = city + ', ' + state
+    	city_state = city + ', ' + state
       # create new venue
-      new_venue = Venue.find_or_create_by(name: event["_embedded"]["venues"][0]["name"], location: location)
+      new_venue = Venue.find_or_create_by(name: event["_embedded"]["venues"][0]["name"], location: city_state)
       # create event
       event_time = event["dates"]["start"]["localTime"]
     	event_date = event["dates"]["start"]["localDate"]
