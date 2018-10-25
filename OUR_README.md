@@ -16,8 +16,7 @@ This is not a standalone executable. We recommend forking this entire directory 
 This is write-up assumes you have a working Ruby environment on your computer. If not, set one up first.
 ### 1. Create Database
 Cd into the root installation directory and run the following Rake task:
-```rake db:create
-```
+```rake db:create```
 ### 2. Migrate tables and changes to DB
 ``` rake db:migrate
 ```
