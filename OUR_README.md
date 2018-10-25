@@ -14,8 +14,13 @@ This is a CLI-based application and as such, is somewhat limited in functionalit
 This is not a standalone executable. We recommend forking this entire directory and cloning it down. The run.rb file in /bin depends on quite a few other files.
 
 This is write-up assumes you have a working Ruby environment on your computer. If not, set one up first.
-
-First, cd into the root installation directory and un the Rake task:
-      rake db:create
+### 1. Create Database
+Cd into the root installation directory and run the following Rake task:
+```rake db:create
+```
+### 2. Migrate tables and changes to DB
+``` rake db:migrate
+```
+### 3. 
 
 This will create the database that will store the results of your API query.
