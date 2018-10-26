@@ -18,7 +18,7 @@ class CommandLineInterface
   def greet_input(input)
     if input == "1" # gets is always a string
       puts
-      puts "Welcome to Eventster! Given an artist, find any show in any city in the United States! Return the date, venue, and ticket prices, where available. This is a CLI-based application and as such, is somewhat limited in functionality. The goal of this project is to demonstrate CLI-based functionality with a RUBY core, while querying the TicketMaster API and saving results in a database.".colorize(:green)
+      puts "Eventster is a national concert finder. Please view the README on GitHub for more information. This is a CLI-based application and as such, is somewhat limited in functionality. The goal of this project is to demonstrate CLI-based functionality with a RUBY core, while querying the TicketMaster API and saving results in a database.".colorize(:green)
       puts
       input = greet # implement "done reading?" feature
       greet_input(input)
