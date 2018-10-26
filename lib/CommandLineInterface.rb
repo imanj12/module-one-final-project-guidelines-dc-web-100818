@@ -68,6 +68,7 @@ class CommandLineInterface
       else
         puts
         puts "No shows of that genre found!".colorize(:red)
+        puts
       end
       greet_input(greet) # added cli streamlined method to end of every option
 
