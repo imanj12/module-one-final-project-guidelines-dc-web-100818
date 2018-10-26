@@ -45,7 +45,13 @@ class CommandLineInterface
       puts "What city is it in? e.g. <Washington, DC>"
       location = gets.strip
       events = find_by_venue(location, venue)
-      filter_price(events)
+      if events.length > 0
+        filter_price(events)
+      else
+        puts
+        puts "No shows at that venue found!".colorize(:red)
+        puts
+      end
       greet_input(greet) # added cli streamlined method to end of every option
 
     # 4. Search for shows by genre.
@@ -55,7 +61,12 @@ class CommandLineInterface
       puts "In what city would you like to search? e.g. <Washington, DC>"
       location = gets.strip
       events = find_by_genre(location, genre)
-      filter_price(events)
+      if events.length > 0
+        filter_price(events)
+      else
+        puts
+        puts "No shows of that genre found!".colorize(:red)
+      end
       greet_input(greet) # added cli streamlined method to end of every option
 
     # 5. Show all shows near you within a certain time period.
