@@ -20,6 +20,7 @@ class ApiCommunicator
     if response_hash["page"]["totalElements"] == 0
       puts
       puts "Uh oh! A few things could be happenning! Please check the location and artist name spelling first. If that still doesn't work, then it's possible there are no shows in the area by that artist, or that Ticketmaster isn't carrying the event!".colorize(:red)
+      puts
     else
     # loop through response hash and make new artist, event, venue objects
       response_hash["_embedded"]["events"].each do |event|

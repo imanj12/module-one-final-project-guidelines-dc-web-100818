@@ -31,7 +31,10 @@ class CommandLineInterface
       artist = gets.strip
       # query api, save to database, return array of all relevant events
       events = find_by_artist(location, artist)
-      filter_price(events)
+      # check to see if event is empty, if so don't run filtr price method
+      if events.length > 0
+        filter_price(events)
+      end
       # show_events(events)
       greet_input(greet) # added cli streamlined method to end of every option
 
