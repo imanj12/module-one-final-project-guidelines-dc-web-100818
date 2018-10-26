@@ -45,6 +45,7 @@ class CommandLineInterface
       puts "What city is it in? e.g. <Washington, DC>"
       location = gets.strip
       events = find_by_venue(location, venue)
+      # check if any events were returned
       if events.length > 0
         filter_price(events)
       else
@@ -61,6 +62,7 @@ class CommandLineInterface
       puts "In what city would you like to search? e.g. <Washington, DC>"
       location = gets.strip
       events = find_by_genre(location, genre)
+      # check if any events were returned
       if events.length > 0
         filter_price(events)
       else
